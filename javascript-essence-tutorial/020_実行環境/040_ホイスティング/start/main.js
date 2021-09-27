@@ -1,9 +1,10 @@
 a();
 
-const a = function a(){
-  // console.log(c);
+function a(){
   let c = 1;
   
+  console.log(c);
+
   d();
   function d () {
     console.log('d is called');
