@@ -1,12 +1,12 @@
 let a = 2;
+window.a = 4;
 function fn1(){
   let b = 1;
+  function fn2(){
+    console.log(a);
+    let a = 3;
+  }
+  fn2();
 }
 
 fn1();
-
-function fn2(){
-  let c = 3;
-  console.log(b);
-}
-fn2();
