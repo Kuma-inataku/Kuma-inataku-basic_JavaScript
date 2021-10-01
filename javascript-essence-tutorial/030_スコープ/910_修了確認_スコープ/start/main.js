@@ -8,7 +8,7 @@
  */
 function fn() {
     if(true) {
-        let a = 'fn called';
+        var a = 'fn called';
     }
     return a; // ReferenceError: a is not defined
 }
@@ -26,7 +26,7 @@ function fn2() {
     console.log(val); // 期待値->'val1'
 
     if(true) {
-        var val = 'val2';
+        let val = 'val2';
         console.log(val); // 期待値->'val2'
     }
 
@@ -46,3 +46,14 @@ fn2();
  * increment(); // 期待値->4
  */
 
+
+    let num = 0;
+    function increment(){
+        num ++;
+        console.log(num);
+    }
+
+increment(); // 期待値->1
+increment(); // 期待値->2
+increment(); // 期待値->3
+increment(); // 期待値->4
