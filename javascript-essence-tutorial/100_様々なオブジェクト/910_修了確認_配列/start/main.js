@@ -19,6 +19,48 @@ class MyArray extends Array {
 		console.log(`%c ${label}`, 'color: blue; font-weight: 600;', this);
 		return this;
 	}
+
+	push(val) {
+		super.push(val);
+		return this;
+	}
+
+	forEach(callback) {
+		for(let i = 0; i < this.length; i++) {
+			callback(this[i], i, this);
+		}
+	}
+
+	map(callback) {
+		const newInstance = new MyArray();
+		for(let i = 0; i < this.length; i++) {
+			const result = callback(this[i], i, this);
+			newInstance.push(result);
+		}
+		return newInstance;
+	}
+
+	filter(callback) {
+		const newInstance = new MyArray();
+		for(let i = 0; i < this.length; i++) {
+			if (callback(this[i], i, this)) {
+				newInstance.push(this[i]);				
+			}
+		}
+		return newInstance;
+	}
+
+	reduce(callback, accu) {
+		const tempArry = [...this];
+		if(accu === undefined) {
+			accu = tempArry.shift();
+		}
+		for(let i = 0; i < tempArry.length; i++) {
+			accu = callback(accu, tempArry[i]);
+		}
+		return accu;
+	}
+
 }
 
 function double(v, i, obj) {
@@ -28,6 +70,10 @@ function double(v, i, obj) {
 const original = new MyArray(1, 2, 3, 4);
 
 const result = original
+	// .forEach(function(v, i, arry){
+	// 	console.log(v, i, arry);
+	// })
+
 	.map(double)
 	.push(5)
 	.filter(function (v, i) {

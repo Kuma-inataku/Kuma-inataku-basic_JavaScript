@@ -18,3 +18,9 @@ const moduleA = (function () {
     publicVal
   }
 })();
+
+const moduleB = (function({ publicFn:fn, publicVal:val }){
+  fn();
+  console.log(val++);
+  fn();
+})(moduleA);

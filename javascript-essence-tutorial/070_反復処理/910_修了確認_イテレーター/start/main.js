@@ -22,11 +22,45 @@
  */
 
 
- 
-// const it = genStep(4, 10, 2);
-// let a = it.next();
-
-// while(!a.done) {
-//   console.log(a.value);
-//   a = it.next();
+// function* genStep(min, max, step){
+//   let num = min;
+//   while(num < max) {
+//     yield num++;
+//   }
+//   return;
+//   // if (num === max){
+//   //   // 終了条件
+//   //   return;
+//   // } else {
+//   //   // 継続条件
+//   //   console.log(num);
+//   //   new_num = num + step;
+//   // }
 // }
+
+function genStep(min = 4, max = 10, step = 2) {
+  let i = min - step;
+  return {
+    next() {
+      i += step;
+      if(i > max) {
+        return {
+          done: true
+        }
+      } else {
+        return {
+          done: false,
+          value: i
+        }
+      }
+    }
+  }
+}
+
+const it = genStep();
+let a = it.next();
+
+while(!a.done) {
+  console.log(a.value);
+  a = it.next();
+}

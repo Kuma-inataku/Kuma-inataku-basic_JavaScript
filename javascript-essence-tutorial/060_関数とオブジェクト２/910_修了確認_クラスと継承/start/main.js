@@ -43,7 +43,7 @@
  * login failed <- loginで失敗した場合
  */
 
-function loginController(user) {
+function loginController(user, role, route) {
   if (user.login()
     && user.checkRoll()
     && user.redirect()) {
@@ -52,3 +52,32 @@ function loginController(user) {
     console.log('login failed');
   }
 }
+
+class User {
+  constructor(name, role, route){
+    this.name = name;
+    this.role = role;
+    this.route = route;
+  }
+  login(){
+    console.log('User:' + this.name)
+    return false;
+  }
+  checkRoll(){
+    console.log('you have ' + this.role + ' roll')
+    return true;
+  }
+  redirect() {
+    console.log('redirect : ' + this.route)
+    return true
+  }
+}
+
+class AdminUser extends User{
+  // constructor(name, role, route){
+  //   // super(name, role, route);
+  // }
+}
+
+loginController(new User('Bob', 'normal', '/'));
+loginController(new AdminUser('sum', 'admin', '/admin'));

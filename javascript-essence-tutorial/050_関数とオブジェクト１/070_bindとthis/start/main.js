@@ -8,8 +8,23 @@ const person = {
 }
 person.hello();
 
+const helloTom = person.hello.bind(person)
+
 function fn(ref) {
     ref();
 }
 
-fn(person.hello);
+fn(helloTom);
+
+function a(name, hoge) {
+    console.log('hello ' + name)
+    console.log('hello ' + hoge)
+}
+
+// b()
+
+// const b = a.bind(null, 'Tim')
+const b = a.bind(null, 'Tim', 'hoge')
+// const b = a.bind('Tim')
+
+b()
